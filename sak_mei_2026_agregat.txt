@@ -1,0 +1,22 @@
+WITH base_data AS (
+SELECT
+  root.no_dsrt as nurt,
+  namakrt as nama_krt,
+  art.dem_name as nama_art,
+  art.index1 as no_art,
+  root.catatan,
+  base.is_active as base_is_active,
+  art.*,
+  base.current_user_fullname
+FROM tkk_ebf8ddb5.art_roster art
+  LEFT JOIN tkk_ebf8ddb5.root_table root
+    ON root.assignment_id = art.assignment_id
+  LEFT JOIN tkk_ebf8ddb5.base_table_assignment base
+    ON base.id = art.assignment_id
+WHERE base.is_active = 1
+)
+
+select count(*) as jml from (
+  select ROW_NUMBER() OVER (ORDER BY assignment_id) AS row_num, * from base_data
+) aa 
+--where aa.row_num BETWEEN 1001 AND 2000
