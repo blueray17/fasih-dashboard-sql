@@ -1,0 +1,14 @@
+WITH base_data AS (
+select root.*
+      ,p.Pengawas
+      ,p.Pencacah
+FROM tmt_550bfe07.root_table root
+LEFT JOIN tmt_550bfe07.base_table_assignment base
+  ON root.assignment_id = base.id
+LEFT JOIN tmt_550bfe07.base_petugas p
+  ON root.assignment_id = p.assignment_id
+      
+WHERE base.is_active = 1
+)
+
+select count(*) as jml from base_data
