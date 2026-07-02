@@ -10,6 +10,5 @@ LEFT JOIN tmt_550bfe07.base_petugas p
       
 WHERE base.is_active = 1
 )
-
-select ROW_NUMBER() over (level_4_full_code) as row_nums from base_data
+select * from (select ROW_NUMBER() over (order by level_4_full_code) as row_nums, * from base_data) a
 where row_nums between 1 and 1000
