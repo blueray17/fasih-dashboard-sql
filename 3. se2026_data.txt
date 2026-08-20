@@ -1,0 +1,33 @@
+SELECT
+    row_nums,
+    assignment_id,
+    kodekab,
+    kabupaten,
+    kodekec,
+    kecamatan,
+    kodedesa,
+    desa,
+    kodesubsls,
+    nama_usaha,
+    nama_pengusaha,
+    nik_pengusaha,
+    assignment_status_alias
+FROM (
+    SELECT
+        ROW_NUMBER() OVER (ORDER BY level_6_full_code) AS row_nums,
+        assignment_id,
+        level_2_full_code AS kodekab,
+        level_2_name AS kabupaten,
+        level_3_full_code AS kodekec,
+        level_3_name AS kecamatan,
+        level_4_full_code AS kodedesa,
+        level_4_name AS desa,
+        level_6_full_code AS kodesubsls,
+        COALESCE(nama_usaha, nama_usaha_edit) AS nama_usaha,
+        COALESCE(pengusaha, pengusaha_var_label) AS nama_pengusaha,
+        COALESCE(nik_pengusaha, nik_pengusaha_var) AS nik_pengusaha,
+        assignment_status_alias
+    FROM tgr_fd68e454.se2026_nested
+    WHERE COALESCE(pengusaha, pengusaha_var_label) IS NOT NULL
+) a
+WHERE row_nums BETWEEN 1 AND 1000
