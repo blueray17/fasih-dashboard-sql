@@ -1,0 +1,3 @@
+select count (jml) as jml2 from (SELECT 1 as jml 
+FROM tgr_fd68e454.se2026_nested 
+WHERE COALESCE(pengusaha,pengusaha_var_label) is not NULL) A group by jml
