@@ -401,7 +401,7 @@ SELECT 'B' AS kelompok_cek,
        CONCAT('PML: ',p.PML,'; PPL: ',p.PPL,'; Status: ',base.assignment_status_alias) AS petugas,
        LTRIM( STUFF( CONCAT( a1.anomali, a2.anomali, a3.anomali ) ,1,1,'') ) AS anomali,
        root.catatan,
-       CONCAT('<a href="https://fasih-sm.bps.go.id/app/assignment-detail/', art.assignment_id ,'" target="_blank">Link Assignment</a>') AS Link,
+       art.assignment_id AS Link,
        root.survey_period_id
 
 FROM tok_3fd42e0e.art_roster art
