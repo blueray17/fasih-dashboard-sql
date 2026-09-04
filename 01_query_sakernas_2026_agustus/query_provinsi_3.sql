@@ -385,7 +385,7 @@ FROM tok_3fd42e0e.art_roster art
                    ON base.id = art.assignment_id
          LEFT JOIN tok_3fd42e0e.petugas p
                    ON p.assignment_id = root.assignment_id
-WHERE base.is_active = 1
+WHERE base.is_active = 1 and (DEM_AGE>=5 and SJJ_EMPREL_value=5 and (SJJ_KBJI_value>=0111 and SJJ_KBJI_value<=4419))
 
 UNION ALL
 
