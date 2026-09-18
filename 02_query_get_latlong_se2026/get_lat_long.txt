@@ -12,10 +12,10 @@
 
 SELECT
     b.level_2_name            AS kabupaten,
-    b.level_3_name            AS kecamatan,
-    b.level_4_name            AS desa_kel,
-    b.level_5_name            AS sls,
-    b.level_6_name            AS sub_sls,
+    concat('[',b.level_3_code,'] ',b.level_3_name)            AS kecamatan,
+    concat('[',b.level_4_code,'] ',b.level_4_name)            AS desa_kel,
+    concat('[',b.level_5_code,'] ',b.level_5_name)            AS sls,
+    concat('[',b.level_6_code,'] ',b.level_6_name)            AS sub_sls,
     b.level_6_full_code       AS id_sub_sls,
 
     b.assignment_status_alias AS status_dokumen,
