@@ -1,0 +1,139 @@
+-- ============================================================================
+-- RAW DATA SELURUH ASSIGNMENT SE2026
+-- ============================================================================
+-- KRITERIA:
+-- 1. Assignment aktif
+-- 2. Status dokumen
+-- 3. Salah satu ADA KELUARGA / ADA BANGUNAN USAHA = DITEMUKAN atau BARU
+-- 4. NULL tidak dianggap memenuhi kriteria ditemukan/baru
+-- 5. Latitude dan longitude terisi
+-- 6. Koordinat bukan 0,0
+-- ============================================================================
+
+SELECT
+    b.level_2_name            AS kabupaten,
+    b.level_3_name            AS kecamatan,
+    b.level_4_name            AS desa_kel,
+    b.level_5_name            AS sls,
+    b.level_6_name            AS sub_sls,
+    b.level_6_full_code       AS id_sub_sls,
+
+    b.assignment_status_alias AS status_dokumen,
+    b.assignment_id,
+
+    -- ========================================================================
+    -- IDENTITAS PRELIST
+    -- ========================================================================
+    b.data1 AS nama_prelist,
+    b.data6 AS skala_jenis_prelist,
+
+    -- ========================================================================
+    -- HASIL PENDATAAN
+    -- ========================================================================
+    r.no_bang,
+    r.kode_bang_value,
+    r.kode_bang_label,
+    r.ada_keluarga_label,
+    r.ada_bang_usaha_label,
+    r.jumlah_usaha,
+
+    -- ========================================================================
+    -- JENIS BANGUNAN
+    -- ========================================================================
+   CASE
+        WHEN CAST(TRIM(SUBSTRING_INDEX(r.kode_bang_value, '.', 1)) AS UNSIGNED) = 1
+           THEN '1. BKU'
+
+        WHEN CAST(TRIM(SUBSTRING_INDEX(r.kode_bang_value, '.', 1)) AS UNSIGNED) = 2
+          THEN '2. Bangunan Tempat Tinggal ada usaha'
+
+        WHEN CAST(TRIM(SUBSTRING_INDEX(r.kode_bang_value, '.', 1)) AS UNSIGNED) = 3
+            AND COALESCE(r.jumlah_usaha, 0) <> 0
+            THEN '2. Bangunan Tempat Tinggal ada usaha'
+
+        WHEN CAST(TRIM(SUBSTRING_INDEX(r.kode_bang_value, '.', 1)) AS UNSIGNED) = 3
+           THEN '3. Bangunan Tempat Tinggal'
+
+        WHEN CAST(TRIM(SUBSTRING_INDEX(r.kode_bang_value, '.', 1)) AS UNSIGNED)
+             IN (4, 5, 6, 7, 8, 9)
+             AND COALESCE(r.jumlah_usaha, 0) <> 0
+             THEN '4. Bangunan lainnya ada usaha'
+
+        WHEN CAST(TRIM(SUBSTRING_INDEX(r.kode_bang_value, '.', 1)) AS UNSIGNED)
+             IN (4, 5, 6, 7, 8, 9)
+             THEN '5. Bangunan lainnya'
+
+        ELSE NULL
+    END AS jenis_bangunan,
+
+    -- ========================================================================
+    -- KOORDINAT
+    -- ========================================================================
+    --r.geotag_latitude,r.geotag_longitude,
+
+   CAST(r.geotag_latitude AS DOUBLE)  AS latitude,
+   CAST(r.geotag_longitude AS DOUBLE) AS longitude,
+
+    -- ========================================================================
+    -- LINK FASIH
+    -- ========================================================================
+    CONCAT(
+        'https://fasih-sm.bps.go.id/app/assignment/',
+        b.survey_period_id,
+        '/',
+        b.assignment_id
+    ) AS link_fasih
+
+FROM tgr_fd68e454.base_table_assignment b
+
+LEFT JOIN tgr_fd68e454.root_table r
+       ON r.assignment_id = b.assignment_id
+      AND r.assignment_date_modified = b.assignment_date_modified
+
+WHERE
+    -- ========================================================================
+    -- ASSIGNMENT AKTIF
+    -- ========================================================================
+    b.is_active = 1
+    --AND b.level_6_full_code = '1871091005000400'
+    -- ========================================================================
+    -- STATUS DOKUMEN BUKAN OPEN
+    -- ========================================================================
+    AND b.assignment_status_alias IS NOT NULL
+    AND UPPER(TRIM(b.assignment_status_alias))
+        NOT IN ('OPEN')
+
+    -- ========================================================================
+    -- SALAH SATU WAJIB DITEMUKAN / BARU
+    -- ========================================================================
+    AND (
+        UPPER(TRIM(r.ada_keluarga_label))
+            IN ('1. DITEMUKAN', '2. BARU')
+        OR
+        UPPER(TRIM(r.ada_bang_usaha_label))
+            IN ('1. DITEMUKAN', '2. BARU')
+    )
+
+    -- ========================================================================
+    -- LATITUDE TERISI
+    -- ========================================================================
+    AND r.geotag_latitude IS NOT NULL
+    AND TRIM(CAST(r.geotag_latitude AS CHAR)) <> ''
+
+    -- ========================================================================
+    -- LONGITUDE TERISI
+    -- ========================================================================
+    AND r.geotag_longitude IS NOT NULL
+    AND TRIM(CAST(b.longitude AS CHAR)) <> ''
+
+    -- ========================================================================
+    -- BUKAN KOORDINAT 0,0
+    -- ========================================================================
+    AND CAST(r.geotag_latitude AS DOUBLE) <> 0
+    AND CAST(r.geotag_longitude AS DOUBLE) <> 0
+
+ORDER BY
+    b.level_6_full_code,
+    b.assignment_id
+
+LIMIT 9000 OFFSET 0;
