@@ -1,0 +1,157 @@
+-- Keterangan lengkap daftar anomali dapat dilihat di sini : http://s.bps.go.id/anomali_sakernas_2026
+
+WITH 
+
+anomali_1 AS (
+ SELECT 
+	root.assignment_id,
+	root.nks,
+        root.no_dsrt,
+        art.ppno,
+        art.dem_name,
+	',P1' AS anomali
+FROM tle_c7706a44.art_roster art
+         LEFT JOIN tle_c7706a44.root_table root
+                   ON root.assignment_id = art.assignment_id
+         LEFT JOIN tle_c7706a44.base_table_assignment base
+                   ON base.id = art.assignment_id
+
+WHERE base.is_active = 1
+  AND dem_age >= 5
+  AND mjj_kbji_value IS NOT NULL
+  AND ((SUBSTRING(mjj_kbji_value,1,4) 
+        >= 1111 AND SUBSTRING(mjj_kbji_value,1,4) 
+        <= 1431) OR (SUBSTRING(mjj_kbji_value,1,4) 
+        >= 2111 AND SUBSTRING(mjj_kbji_value,1,4) 
+        <= 2356) OR (SUBSTRING(mjj_kbji_value,1,4) 
+        >= 2411 AND SUBSTRING(mjj_kbji_value,1,4) 
+        <= 2643) OR (SUBSTRING(mjj_kbji_value,1,4) 
+        >= 3111 AND SUBSTRING(mjj_kbji_value,1,4) 
+        <= 3413)
+        ) 
+  AND dem_age < 15
+),
+
+anomali_2 AS (
+ SELECT 
+	root.assignment_id,
+	root.nks,
+        root.no_dsrt,
+        art.ppno,
+        art.dem_name,
+	',P2' AS anomali
+FROM tle_c7706a44.art_roster art
+         LEFT JOIN tle_c7706a44.root_table root
+                   ON root.assignment_id = art.assignment_id
+         LEFT JOIN tle_c7706a44.base_table_assignment base
+                   ON base.id = art.assignment_id
+
+WHERE base.is_active = 1
+  AND dem_age >= 5
+  AND sjj_kbji_value IS NOT NULL
+  AND ((SUBSTRING(sjj_kbji_value,1,4) 
+        >= 1111 AND SUBSTRING(sjj_kbji_value,1,4) 
+        <= 1431) OR (SUBSTRING(sjj_kbji_value,1,4) 
+        >= 2111 AND SUBSTRING(sjj_kbji_value,1,4) 
+        <= 2356) OR (SUBSTRING(sjj_kbji_value,1,4) 
+        >= 2411 AND SUBSTRING(sjj_kbji_value,1,4) 
+        <= 2643) OR (SUBSTRING(sjj_kbji_value,1,4) 
+        >= 3111 AND SUBSTRING(sjj_kbji_value,1,4) 
+        <= 3413)
+        ) 
+  AND dem_age <15
+),
+
+anomali_3 AS (
+ SELECT 
+	root.assignment_id,
+	root.nks,
+        root.no_dsrt,
+        art.ppno,
+        art.dem_name,
+	',P3' AS anomali
+FROM tle_c7706a44.art_roster art
+         LEFT JOIN tle_c7706a44.root_table root
+                   ON root.assignment_id = art.assignment_id
+         LEFT JOIN tle_c7706a44.base_table_assignment base
+                   ON base.id = art.assignment_id
+
+WHERE base.is_active = 1
+  AND dem_age >= 5
+  AND mpk_kbji_value IS NOT NULL
+  AND ((SUBSTRING(mpk_kbji_value,1,4) 
+        >= 1111 AND SUBSTRING(mpk_kbji_value,1,4) 
+        <= 1431) OR (SUBSTRING(mpk_kbji_value,1,4) 
+        >= 2111 AND SUBSTRING(mpk_kbji_value,1,4) 
+        <= 2356) OR (SUBSTRING(mpk_kbji_value,1,4) 
+        >= 2411 AND SUBSTRING(mpk_kbji_value,1,4) 
+        <= 2643) OR (SUBSTRING(mpk_kbji_value,1,4) 
+        >= 3111 AND SUBSTRING(mpk_kbji_value,1,4) 
+        <= 3413)
+        ) 
+  AND dem_age < 15
+)
+
+
+SELECT art.level_1_full_code,
+       art.level_1_name                                                                    AS PROV,
+       art.level_2_full_code,
+       art.level_2_name                                                                    AS KAB,
+       art.level_3_name                                                                    AS KEC,
+       art.level_4_name                                                                    AS DESA,
+       art.level_5_name                                                                    AS SLS,
+       art.level_6_name                                                                    AS SUBSLS,
+       root.nks                                                                            AS NKS,
+       root.no_dsrt                                                                        AS DSRT,
+       art.ppno                                                                            AS NO_ART,
+       art.dem_name                                                                        AS NAMA_ART,
+       dem_age,
+       SUBSTRING(mjj_kbji_value,1,4)                                                       AS MJJ_KBJI,
+       SUBSTRING(sjj_kbji_value,1,4)                                                       AS SJJ_KBJI,
+       SUBSTRING(mpk_kbji_value,1,4)                                                       AS MPK_KBJI,
+       CONCAT('PML: ',p.PML,'; PPL: ',p.PPL,'; Status: ',base.assignment_status_alias) AS petugas,
+       LTRIM(
+		STUFF(
+			CONCAT(
+			a1.anomali, a2.anomali, a3.anomali
+		)
+		,1,1,'')
+		) AS anomali,
+      root.catatan,
+      CONCAT('<a href="https://fasih-sm.bps.go.id/app/assignment-detail/',
+              art.assignment_id
+           ,'" target="_blank">Link Assignment</a>') AS Link,
+      root.survey_period_id
+      
+
+FROM tle_c7706a44.art_roster art
+         LEFT JOIN tle_c7706a44.root_table root
+                   ON root.assignment_id = art.assignment_id
+	LEFT JOIN anomali_1 as a1
+                   ON a1.assignment_id = root.assignment_id AND 
+			  a1.nks = root.nks AND 
+        		  a1.no_dsrt = root.no_dsrt AND 
+        		  a1.ppno = art.ppno AND
+        		  a1.dem_name = art.dem_name
+	LEFT JOIN anomali_2 as a2
+                   ON a2.assignment_id = root.assignment_id AND 
+			  a2.nks = root.nks AND 
+        		  a2.no_dsrt = root.no_dsrt AND 
+        		  a2.ppno = art.ppno AND
+        		  a2.dem_name = art.dem_name
+	LEFT JOIN anomali_3 as a3
+                   ON a3.assignment_id = root.assignment_id AND 
+			  a3.nks = root.nks AND 
+        		  a3.no_dsrt = root.no_dsrt AND 
+        		  a3.ppno = art.ppno AND
+        		  a3.dem_name = art.dem_name
+  LEFT JOIN tle_c7706a44.petugas as p
+              ON p.assignment_id = root.assignment_id 
+  LEFT JOIN tle_c7706a44.base_table_assignment base
+                   ON base.id = art.assignment_id
+
+WHERE base.is_active = 1 AND (base.assignment_status_alias <> 'DRAFT' AND base.assignment_status_alias <> 'OPEN')
+  AND (a1.anomali IS NOT NULL OR
+		a2.anomali IS NOT NULL OR
+		a3.anomali IS NOT NULL
+	)
