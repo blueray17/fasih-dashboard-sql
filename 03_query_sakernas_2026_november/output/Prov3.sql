@@ -18,11 +18,11 @@ FROM tle_c7706a44.art_roster art
                    ON p.assignment_id = root.assignment_id
 WHERE base.is_active = 1
 AND DEM_AGE>5
-AND mju_ins_value<=2
-AND mjj_emprel_value=1
-AND mjc_contra_value<=2
-AND mjc_conop_value=3
-AND mie_soc_a_value=2
+AND CAST(mju_ins_value AS VARCHAR(100)) <= '2'
+AND CAST(mjj_emprel_value AS VARCHAR(100)) = '1'
+AND CAST(mjc_contra_value AS VARCHAR(100)) <= '2'
+AND CAST(mjc_conop_value AS VARCHAR(100)) = '3'
+AND CAST(mie_soc_a_value AS VARCHAR(100)) = '2'
 
 UNION ALL
 
@@ -46,11 +46,11 @@ FROM tle_c7706a44.art_roster art
                    ON p.assignment_id = root.assignment_id
 WHERE base.is_active = 1
 AND DEM_AGE>5
-AND mju_ins_value<=2
-AND mjj_emprel_value=1
-AND mjc_contra_value<=2
-AND (mjc_conop_value=1 or mjc_conop_value=3)
-AND mie_soc_b_value=2
+AND CAST(mju_ins_value AS VARCHAR(100)) <= '2'
+AND CAST(mjj_emprel_value AS VARCHAR(100)) = '1'
+AND CAST(mjc_contra_value AS VARCHAR(100)) <= '2'
+AND (CAST(mjc_conop_value AS VARCHAR(100)) = '1' or CAST(mjc_conop_value AS VARCHAR(100)) = '3')
+AND CAST(mie_soc_b_value AS VARCHAR(100)) = '2'
 
 UNION ALL
 
@@ -74,11 +74,11 @@ FROM tle_c7706a44.art_roster art
                    ON p.assignment_id = root.assignment_id
 WHERE base.is_active = 1
 AND DEM_AGE>5
-AND mju_ins_value<=2
-AND mjj_emprel_value=1
-AND mjc_contra_value<=2
-AND mjc_conop_value=3
-AND mie_soc_c_value =2
+AND CAST(mju_ins_value AS VARCHAR(100)) <= '2'
+AND CAST(mjj_emprel_value AS VARCHAR(100)) = '1'
+AND CAST(mjc_contra_value AS VARCHAR(100)) <= '2'
+AND CAST(mjc_conop_value AS VARCHAR(100)) = '3'
+AND CAST(mie_soc_c_value AS VARCHAR(100)) = '2'
 
 UNION ALL
 
@@ -102,11 +102,11 @@ FROM tle_c7706a44.art_roster art
                    ON p.assignment_id = root.assignment_id
 WHERE base.is_active = 1
 AND DEM_AGE>5
-AND mju_ins_value<=2
-AND mjj_emprel_value=1
-AND mjc_contra_value<=2
-AND mjc_conop_value=3
-AND mie_soc_d_value in (2,3)
+AND CAST(mju_ins_value AS VARCHAR(100)) <= '2'
+AND CAST(mjj_emprel_value AS VARCHAR(100)) = '1'
+AND CAST(mjc_contra_value AS VARCHAR(100)) <= '2'
+AND CAST(mjc_conop_value AS VARCHAR(100)) = '3'
+AND CAST(mie_soc_d_value AS VARCHAR(100)) IN ('2', '3')
 
 UNION ALL
 
@@ -130,11 +130,11 @@ FROM tle_c7706a44.art_roster art
                    ON p.assignment_id = root.assignment_id
 WHERE base.is_active = 1
 AND DEM_AGE>5
-AND mju_ins_value<=2
-AND mjj_emprel_value=1
-AND mjc_contra_value<=2
-AND mjc_conop_value=3
-AND mie_soc_e_value in (2,97)
+AND CAST(mju_ins_value AS VARCHAR(100)) <= '2'
+AND CAST(mjj_emprel_value AS VARCHAR(100)) = '1'
+AND CAST(mjc_contra_value AS VARCHAR(100)) <= '2'
+AND CAST(mjc_conop_value AS VARCHAR(100)) = '3'
+AND CAST(mie_soc_e_value AS VARCHAR(100)) IN ('2', '97')
 
 UNION ALL
 
@@ -158,11 +158,11 @@ FROM tle_c7706a44.art_roster art
                    ON p.assignment_id = root.assignment_id
 WHERE base.is_active = 1
 AND DEM_AGE>5
-AND mju_ins_value<=2
-AND mjj_emprel_value=1
-AND mjc_contra_value<=2
-AND mjc_conop_value=3
-AND mie_soc_g_value=2
+AND CAST(mju_ins_value AS VARCHAR(100)) <= '2'
+AND CAST(mjj_emprel_value AS VARCHAR(100)) = '1'
+AND CAST(mjc_contra_value AS VARCHAR(100)) <= '2'
+AND CAST(mjc_conop_value AS VARCHAR(100)) = '3'
+AND CAST(mie_soc_g_value AS VARCHAR(100)) = '2'
 
 UNION ALL
 
@@ -186,11 +186,11 @@ FROM tle_c7706a44.art_roster art
                    ON p.assignment_id = root.assignment_id
 WHERE base.is_active = 1
 AND DEM_AGE>5
-AND mju_ins_value<=2
-AND mjj_emprel_value=1
-AND mjc_contra_value<=2
-AND mjc_conop_value=3
-AND mie_soc_h_value=2
+AND CAST(mju_ins_value AS VARCHAR(100)) <= '2'
+AND CAST(mjj_emprel_value AS VARCHAR(100)) = '1'
+AND CAST(mjc_contra_value AS VARCHAR(100)) <= '2'
+AND CAST(mjc_conop_value AS VARCHAR(100)) = '3'
+AND CAST(mie_soc_h_value AS VARCHAR(100)) = '2'
 
 UNION ALL
 
@@ -214,11 +214,11 @@ FROM tle_c7706a44.art_roster art
                    ON p.assignment_id = root.assignment_id
 WHERE base.is_active = 1
 AND DEM_AGE>5
-AND mju_ins_value<=2
-AND mjj_emprel_value=1
-AND mjc_contra_value<=2
-AND mjc_conop_value=3
-AND mie_soc_i_value=2
+AND CAST(mju_ins_value AS VARCHAR(100)) <= '2'
+AND CAST(mjj_emprel_value AS VARCHAR(100)) = '1'
+AND CAST(mjc_contra_value AS VARCHAR(100)) <= '2'
+AND CAST(mjc_conop_value AS VARCHAR(100)) = '3'
+AND CAST(mie_soc_i_value AS VARCHAR(100)) = '2'
 
 UNION ALL
 
@@ -242,9 +242,9 @@ FROM tle_c7706a44.art_roster art
                    ON p.assignment_id = root.assignment_id
 WHERE base.is_active = 1
 AND DEM_AGE>5
-AND SJB_TEXT_value=2
-AND MJJ_KBLI_value>=05100
-and (AGF_CHK_A_value=1 or AGF_CHK_B_value=1)
+AND CAST(SJB_TEXT_value AS VARCHAR(100)) = '2'
+AND CAST(MJJ_KBLI_value AS VARCHAR(100)) >= '05100'
+and (CAST(AGF_CHK_A_value AS VARCHAR(100)) = '1' or CAST(AGF_CHK_B_value AS VARCHAR(100)) = '1')
 
 UNION ALL
 
@@ -268,9 +268,9 @@ FROM tle_c7706a44.art_roster art
                    ON p.assignment_id = root.assignment_id
 WHERE base.is_active = 1
 AND DEM_AGE>5
-AND SJB_TEXT_value=2
-AND (MJJ_KBLI_value>=01100 and mjj_kbli_value<=03300)
-and (AGF_CHK_A_value=2 AND AGF_CHK_B_value=2)
+AND CAST(SJB_TEXT_value AS VARCHAR(100)) = '2'
+AND (CAST(MJJ_KBLI_value AS VARCHAR(100)) >= '01100' and CAST(MJJ_KBLI_value AS VARCHAR(100)) <= '03300')
+and (CAST(AGF_CHK_A_value AS VARCHAR(100)) = '2' AND CAST(AGF_CHK_B_value AS VARCHAR(100)) = '2')
 
 UNION ALL
 
@@ -293,29 +293,29 @@ FROM tle_c7706a44.art_roster art
          LEFT JOIN tle_c7706a44.petugas p
                    ON p.assignment_id = root.assignment_id
 WHERE base.is_active = 1
-and DEM_AGE>=5 AND MJJ_EMPREL_value=5
-AND ((MJJ_KBLI_value>82990 AND MJJ_KBLI_value<85510)
-OR (MJJ_KBLI_value>85500 AND MJJ_KBLI_value<86105)
-OR (MJJ_KBLI_value>63900 AND MJJ_KBLI_value<64191)
-OR (MJJ_KBLI_value>64999 AND MJJ_KBLI_value<66149)
-OR (MJJ_KBLI_value>33203 AND MJJ_KBLI_value <35129)
-OR (MJJ_KBLI_value>28160 AND MJJ_KBLI_value <30111)
-OR (MJJ_KBLI_value>30120 AND MJJ_KBLI_value <30912)
-OR (MJJ_KBLI_value>10423 AND MJJ_KBLI_value<10501)
-OR MJJ_KBLI_value=85520 OR MJJ_KBLI_value=85578
-OR MJJ_KBLI_value=86109 OR MJJ_KBLI_value=87301
-OR MJJ_KBLI_value=87991 OR MJJ_KBLI_value=66116
-OR MJJ_KBLI_value=66292 OR MJJ_KBLI_value=65123
-OR MJJ_KBLI_value=64920 OR MJJ_KBLI_value=66122
-OR MJJ_KBLI_value=60311 OR MJJ_KBLI_value=49111
-OR MJJ_KBLI_value=49119 OR MJJ_KBLI_value=49120
-OR MJJ_KBLI_value=52212 OR MJJ_KBLI_value=35159
-OR MJJ_KBLI_value=35401 OR MJJ_KBLI_value=35202
-OR MJJ_KBLI_value=20292 OR MJJ_KBLI_value=91111
-OR MJJ_KBLI_value=91121 OR MJJ_KBLI_value=91211
-OR MJJ_KBLI_value=91300 or MJJ_KBLI_value=91221
-OR MJJ_KBLI_value=94110 OR MJJ_KBLI_value=94121
-OR MJJ_KBLI_value=94200 OR MJJ_KBLI_value=94920)
+and DEM_AGE>=5 AND CAST(mjj_emprel_value AS VARCHAR(100)) = '5'
+AND ((CAST(MJJ_KBLI_value AS VARCHAR(100)) > '82990' AND CAST(MJJ_KBLI_value AS VARCHAR(100)) < '85510')
+OR (CAST(MJJ_KBLI_value AS VARCHAR(100)) > '85500' AND CAST(MJJ_KBLI_value AS VARCHAR(100)) < '86105')
+OR (CAST(MJJ_KBLI_value AS VARCHAR(100)) > '63900' AND CAST(MJJ_KBLI_value AS VARCHAR(100)) < '64191')
+OR (CAST(MJJ_KBLI_value AS VARCHAR(100)) > '64999' AND CAST(MJJ_KBLI_value AS VARCHAR(100)) < '66149')
+OR (CAST(MJJ_KBLI_value AS VARCHAR(100)) > '33203' AND CAST(MJJ_KBLI_value AS VARCHAR(100)) < '35129')
+OR (CAST(MJJ_KBLI_value AS VARCHAR(100)) > '28160' AND CAST(MJJ_KBLI_value AS VARCHAR(100)) < '30111')
+OR (CAST(MJJ_KBLI_value AS VARCHAR(100)) > '30120' AND CAST(MJJ_KBLI_value AS VARCHAR(100)) < '30912')
+OR (CAST(MJJ_KBLI_value AS VARCHAR(100)) > '10423' AND CAST(MJJ_KBLI_value AS VARCHAR(100)) < '10501')
+OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '85520' OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '85578'
+OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '86109' OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '87301'
+OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '87991' OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '66116'
+OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '66292' OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '65123'
+OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '64920' OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '66122'
+OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '60311' OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '49111'
+OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '49119' OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '49120'
+OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '52212' OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '35159'
+OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '35401' OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '35202'
+OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '20292' OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '91111'
+OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '91121' OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '91211'
+OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '91300' or CAST(MJJ_KBLI_value AS VARCHAR(100)) = '91221'
+OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '94110' OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '94121'
+OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '94200' OR CAST(MJJ_KBLI_value AS VARCHAR(100)) = '94920')
 
 UNION ALL
 
@@ -339,8 +339,8 @@ FROM tle_c7706a44.art_roster art
                    ON p.assignment_id = root.assignment_id
 WHERE base.is_active = 1
 and DEM_AGE>=5
-and MJJ_EMPREL_value=5
-and (MJJ_KBJI_value>=0111 and MJJ_KBJI_value<=4419)
+and CAST(mjj_emprel_value AS VARCHAR(100)) = '5'
+and (CAST(MJJ_KBJI_value AS VARCHAR(100)) >= '0111' and CAST(MJJ_KBJI_value AS VARCHAR(100)) <= '4419')
 
 UNION ALL
 
@@ -363,72 +363,72 @@ FROM tle_c7706a44.art_roster art
          LEFT JOIN tle_c7706a44.petugas p
                    ON p.assignment_id = root.assignment_id
 WHERE base.is_active = 1
-and DEM_AGE>=5 AND SJJ_EMPREL_value=5 AND ((SJJ_KBLI_value > 82990 AND SJJ_KBLI_value < 85510) OR (SJJ_KBLI_value > 85500 AND SJJ_KBLI_value <86105) OR (SJJ_KBLI_value>63900 AND SJJ_KBLI_value<64191) OR (SJJ_KBLI_value>64999 AND SJJ_KBLI_value<66149) OR (SJJ_KBLI_value>33203 AND SJJ_KBLI_value <35129) OR (SJJ_KBLI_value>28160 AND SJJ_KBLI_value <30111) OR (SJJ_KBLI_value>30120 AND SJJ_KBLI_value <30912) OR (SJJ_KBLI_value> 10423 AND SJJ_KBLI_value<10501) OR (SJJ_KBLI_value = 85520 OR SJJ_KBLI_value = 85578 OR SJJ_KBLI_value = 86109 OR SJJ_KBLI_value = 87301 OR SJJ_KBLI_value = 87991 OR SJJ_KBLI_value = 66116 OR SJJ_KBLI_value = 66292 OR SJJ_KBLI_value = 65123 OR SJJ_KBLI_value = 64920 OR SJJ_KBLI_value = 66122 OR SJJ_KBLI_value = 60311 OR SJJ_KBLI_value = 49111 OR SJJ_KBLI_value = 49119 OR SJJ_KBLI_value = 49120 OR SJJ_KBLI_value = 52212 OR SJJ_KBLI_value = 35159 OR SJJ_KBLI_value = 35401 OR SJJ_KBLI_value = 35202 OR SJJ_KBLI_value = 20292 OR SJJ_KBLI_value = 91111 OR SJJ_KBLI_value = 91121 OR SJJ_KBLI_value = 91211 OR SJJ_KBLI_value = 91300 OR SJJ_KBLI_value = 91221 OR SJJ_KBLI_value = 94110 OR SJJ_KBLI_value = 94121 OR SJJ_KBLI_value = 94200 OR SJJ_KBLI_value = 94920))
+and DEM_AGE>=5 AND CAST(SJJ_EMPREL_value AS VARCHAR(100)) = '5' AND ((CAST(SJJ_KBLI_value AS VARCHAR(100)) > '82990' AND CAST(SJJ_KBLI_value AS VARCHAR(100)) < '85510') OR (CAST(SJJ_KBLI_value AS VARCHAR(100)) > '85500' AND CAST(SJJ_KBLI_value AS VARCHAR(100)) < '86105') OR (CAST(SJJ_KBLI_value AS VARCHAR(100)) > '63900' AND CAST(SJJ_KBLI_value AS VARCHAR(100)) < '64191') OR (CAST(SJJ_KBLI_value AS VARCHAR(100)) > '64999' AND CAST(SJJ_KBLI_value AS VARCHAR(100)) < '66149') OR (CAST(SJJ_KBLI_value AS VARCHAR(100)) > '33203' AND CAST(SJJ_KBLI_value AS VARCHAR(100)) < '35129') OR (CAST(SJJ_KBLI_value AS VARCHAR(100)) > '28160' AND CAST(SJJ_KBLI_value AS VARCHAR(100)) < '30111') OR (CAST(SJJ_KBLI_value AS VARCHAR(100)) > '30120' AND CAST(SJJ_KBLI_value AS VARCHAR(100)) < '30912') OR (CAST(SJJ_KBLI_value AS VARCHAR(100)) > '10423' AND CAST(SJJ_KBLI_value AS VARCHAR(100)) < '10501') OR (CAST(SJJ_KBLI_value AS VARCHAR(100)) = '85520' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '85578' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '86109' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '87301' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '87991' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '66116' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '66292' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '65123' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '64920' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '66122' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '60311' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '49111' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '49119' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '49120' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '52212' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '35159' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '35401' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '35202' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '20292' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '91111' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '91121' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '91211' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '91300' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '91221' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '94110' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '94121' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '94200' OR CAST(SJJ_KBLI_value AS VARCHAR(100)) = '94920'))
 
-UNION ALL
+-- UNION ALL
 
-SELECT art.assignment_id,
-       art.level_2_code                                                                    AS KODE_KAB,
-       art.level_6_full_code                                                                    AS SUBSLS,
-       root.nks                                                                            AS NKS,
-       root.no_dsrt                                                                        AS DSRT,
-       root.namaKRT,
-       art.ppno                                                                            AS NO_ART,
-       art.dem_name                                                                        AS NAMA_ART,
-       CONCAT('p.PML: ',p.PML,'; p.PPL: ',p.PPL,'; Status: ',base.assignment_status_alias) AS petugas,
-       root.catatan,
-       'PROV54'                                                                            AS kode_query
-FROM tle_c7706a44.art_roster art
-         LEFT JOIN tle_c7706a44.root_table root
-                   ON root.assignment_id = art.assignment_id
-         LEFT JOIN tle_c7706a44.base_table_assignment base
-                   ON base.id = art.assignment_id
-         LEFT JOIN tle_c7706a44.petugas p
-                   ON p.assignment_id = root.assignment_id
-WHERE base.is_active = 1 and (DEM_AGE>=5 and SJJ_EMPREL_value=5 and (SJJ_KBJI_value>=0111 and SJJ_KBJI_value<=4419))
+-- SELECT art.assignment_id,
+--       art.level_2_code                                                                    AS KODE_KAB,
+--       art.level_6_full_code                                                                    AS SUBSLS,
+--       root.nks                                                                            AS NKS,
+--       root.no_dsrt                                                                        AS DSRT,
+--       root.namaKRT,
+--       art.ppno                                                                            AS NO_ART,
+--       art.dem_name                                                                        AS NAMA_ART,
+--       CONCAT('p.PML: ',p.PML,'; p.PPL: ',p.PPL,'; Status: ',base.assignment_status_alias) AS petugas,
+--       root.catatan,
+--       'PROV54'                                                                            AS kode_query
+-- FROM tle_c7706a44.art_roster art
+--         LEFT JOIN tle_c7706a44.root_table root
+--                   ON root.assignment_id = art.assignment_id
+--         LEFT JOIN tle_c7706a44.base_table_assignment base
+--                   ON base.id = art.assignment_id
+--         LEFT JOIN tle_c7706a44.petugas p
+--                   ON p.assignment_id = root.assignment_id
+-- WHERE base.is_active = 1 and (DEM_AGE>=5 and CAST(SJJ_EMPREL_value AS VARCHAR(100)) = '5' and (CAST(SJJ_KBJI_value AS VARCHAR(100)) >= '0111' and CAST(SJJ_KBJI_value AS VARCHAR(100)) <= '4419'))
 
-UNION ALL
+-- UNION ALL
 
-SELECT art.assignment_id,
-       art.level_2_code                                                                    AS KODE_KAB,
-       art.level_6_full_code                                                                    AS SUBSLS,
-       root.nks                                                                            AS NKS,
-       root.no_dsrt                                                                        AS DSRT,
-       root.namaKRT,
-       art.ppno                                                                            AS NO_ART,
-       art.dem_name                                                                        AS NAMA_ART,
-       CONCAT('p.PML: ',p.PML,'; p.PPL: ',p.PPL,'; Status: ',base.assignment_status_alias) AS petugas,
-       root.catatan,
-       'PROV55'                                                                            AS kode_query
-FROM tle_c7706a44.art_roster art
-         LEFT JOIN tle_c7706a44.root_table root
-                   ON root.assignment_id = art.assignment_id
-         LEFT JOIN tle_c7706a44.base_table_assignment base
-                   ON base.id = art.assignment_id
-         LEFT JOIN tle_c7706a44.petugas p
-                   ON p.assignment_id = root.assignment_id
-WHERE base.is_active = 1
-and DEM_AGE>=5 and SJJ_EMPREL_value=5 and (SJJ_KBJI_value>=0111 and SJJ_KBJI_value<=4419)
+-- SELECT art.assignment_id,
+--       art.level_2_code                                                                    AS KODE_KAB,
+--       art.level_6_full_code                                                                    AS SUBSLS,
+--       root.nks                                                                            AS NKS,
+--       root.no_dsrt                                                                        AS DSRT,
+--       root.namaKRT,
+--       art.ppno                                                                            AS NO_ART,
+--       art.dem_name                                                                        AS NAMA_ART,
+--       CONCAT('p.PML: ',p.PML,'; p.PPL: ',p.PPL,'; Status: ',base.assignment_status_alias) AS petugas,
+--       root.catatan,
+--       'PROV55'                                                                            AS kode_query
+-- FROM tle_c7706a44.art_roster art
+--         LEFT JOIN tle_c7706a44.root_table root
+--                   ON root.assignment_id = art.assignment_id
+--         LEFT JOIN tle_c7706a44.base_table_assignment base
+--                   ON base.id = art.assignment_id
+--         LEFT JOIN tle_c7706a44.petugas p
+--                   ON p.assignment_id = root.assignment_id
+-- WHERE base.is_active = 1
+-- and DEM_AGE>=5 and CAST(SJJ_EMPREL_value AS VARCHAR(100)) = '5' and (CAST(SJJ_KBJI_value AS VARCHAR(100)) >= '0111' and CAST(SJJ_KBJI_value AS VARCHAR(100)) <= '4419')
 
-UNION ALL
+-- UNION ALL
 
-SELECT art.assignment_id,
-       art.level_2_code                                                                    AS KODE_KAB,
-       art.level_6_full_code                                                                    AS SUBSLS,
-       root.nks                                                                            AS NKS,
-       root.no_dsrt                                                                        AS DSRT,
-       root.namaKRT,
-       art.ppno                                                                            AS NO_ART,
-       art.dem_name                                                                        AS NAMA_ART,
-       CONCAT('p.PML: ',p.PML,'; p.PPL: ',p.PPL,'; Status: ',base.assignment_status_alias) AS petugas,
-       root.catatan,
-       'PROV56'                                                                            AS kode_query
-FROM tle_c7706a44.art_roster art
-         LEFT JOIN tle_c7706a44.root_table root
-                   ON root.assignment_id = art.assignment_id
-         LEFT JOIN tle_c7706a44.base_table_assignment base
-                   ON base.id = art.assignment_id
-         LEFT JOIN tle_c7706a44.petugas p
-                   ON p.assignment_id = root.assignment_id
-WHERE base.is_active = 1
-and DEM_AGE>=5 and MPK_STATUS_value=9 and (MPK_KBJI_value>=0111 and MPK_KBJI_value<=4419);
+-- SELECT art.assignment_id,
+--       art.level_2_code                                                                    AS KODE_KAB,
+--       art.level_6_full_code                                                                    AS SUBSLS,
+--       root.nks                                                                            AS NKS,
+--       root.no_dsrt                                                                        AS DSRT,
+--       root.namaKRT,
+--       art.ppno                                                                            AS NO_ART,
+--       art.dem_name                                                                        AS NAMA_ART,
+--       CONCAT('p.PML: ',p.PML,'; p.PPL: ',p.PPL,'; Status: ',base.assignment_status_alias) AS petugas,
+--       root.catatan,
+--       'PROV56'                                                                            AS kode_query
+-- FROM tle_c7706a44.art_roster art
+--         LEFT JOIN tle_c7706a44.root_table root
+--                   ON root.assignment_id = art.assignment_id
+--         LEFT JOIN tle_c7706a44.base_table_assignment base
+--                   ON base.id = art.assignment_id
+--         LEFT JOIN tle_c7706a44.petugas p
+--                   ON p.assignment_id = root.assignment_id
+-- WHERE base.is_active = 1
+-- and DEM_AGE>=5 and CAST(MPK_STATUS_value AS VARCHAR(100)) = '9' and (CAST(MPK_KBJI_value AS VARCHAR(100)) >= '0111' and CAST(MPK_KBJI_value AS VARCHAR(100)) <= '4419');
